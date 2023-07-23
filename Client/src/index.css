@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    width: 100vw;
+    height: 100vh;
+    overflow-x: hidden;
+}
+
+nav{
+    width: 100vw;
+}
+
+.myImportantWidth {
+    width: 100vw !important;
+    /* background-color: pink; */
+  }
