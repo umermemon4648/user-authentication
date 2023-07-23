@@ -5,6 +5,7 @@ const dbConnection =  require('./db')
 const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser') 
 const cloudinary = require('cloudinary');
+const fileUpload = require('express-fileupload')
 
 const app = express()
 const dotenv = require('dotenv')
@@ -26,7 +27,7 @@ app.use(express.json())
 app.use(cookieParser())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true,limit: '50mb'}))
-
+app.use(fileUpload())
 
 
 

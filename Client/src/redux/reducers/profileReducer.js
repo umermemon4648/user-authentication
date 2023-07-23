@@ -2,14 +2,17 @@ import {createReducer } from '@reduxjs/toolkit'
 export const profileReducer = createReducer({},{
     updateProfileRequest: (state)=>{
         state.loading = true
+        state.isUpdated = false
     },
     updateProfileSuccess: (state,action)=>{
         state.loading = false
-        state.message = action.payload.message
+        state.isUpdated = true
+        state.p_message = action.payload.message
     },
     updateProfileFail: (state, action)=>{
+        state.isUpdated = false
         state.loading = false
-        state.error = action.payload
+        state.p_error = action.payload
     },
 
 
@@ -20,13 +23,52 @@ export const profileReducer = createReducer({},{
     changePasswordSuccess: (state,action)=>{
         state.loading = false
         state.isUpdated = true
-        state.message = action.payload.message
+        state.p_message = action.payload.message
     },
     changePasswordFail: (state, action)=>{
         state.isUpdated = false
         state.loading = false
-        state.error = action.payload
+        state.p_error = action.payload
     },
+
+
+
+    forgetPasswordRequest: (state)=>{
+        state.loading = true
+        state.isUpdated = false
+    },
+    forgetPasswordSuccess: (state,action)=>{
+        state.loading = false
+        state.isUpdated = true
+        state.p_message = action.payload.message
+    },
+    forgetPasswordFail: (state, action)=>{
+        state.isUpdated = false
+        state.loading = false
+        state.p_error = action.payload
+    },
+
+
+
+    resetPasswordRequest: (state)=>{
+        state.loading = true
+        state.isSent = false
+    },
+    resetPasswordSuccess: (state,action)=>{
+        state.loading = false
+        state.isSent = true
+        state.p_message = action.payload.message
+    },
+    resetPasswordFail: (state, action)=>{
+        state.isSent = false
+        state.loading = false
+        state.p_error = action.payload
+    },
+
+
+
+
+
 
 
 
@@ -37,21 +79,21 @@ export const profileReducer = createReducer({},{
     },
     updateAvatarSuccess: (state,action)=>{
         state.loading = false
-        state.message = action.payload.message
+        state.p_message = action.payload.message
     },
     updateAvatarFail: (state, action)=>{
         state.loading = false
-        state.error = action.payload
+        state.p_error = action.payload
     },
 
 
 
 
     clearError: (state)=>{
-        state.error = null
+        state.p_error = null
     },
     clearMessage: (state)=>{
-        state.message = null
+        state.p_message = null
     },
 
 })

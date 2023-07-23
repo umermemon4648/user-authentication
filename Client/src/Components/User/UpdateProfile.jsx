@@ -9,15 +9,24 @@ import {
   CardFooter,
   Input,
 } from "@material-tailwind/react";
-
-
+import { updateTheProfile } from '../../redux/actions/profileAction';
+import {useDispatch, useSelector} from 'react-redux'
+import { Link, useNavigate } from 'react-router-dom';
+import {toast } from 'react-toastify';
+import ToastAlert from '../../layout/ToastAlert';
+import { getTheUserProfile } from '../../redux/actions/userAction';
 
 const UpdateProfile = ({handleOpen, open}) => {
+  const {p_message, p_error, isUpdated} = useSelector(state => state.profile)
+  const {user, loading} = useSelector(state => state.user)
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const [updateProfile, setUpdateProfile] = useState({
-    n_name: '',
-    n_email: '',
+    n_name: user.name,
+    n_email: user.email,
 })
+
 
   const getInputData = (e)=>{
     console.log("updateProfile: ",updateProfile);
@@ -28,19 +37,40 @@ const UpdateProfile = ({handleOpen, open}) => {
   const submitHandler = (e)=>{
     e.preventDefault()
     const {n_email, n_name} = updateProfile
-    alert("Update profile")
-
-
+ 
+    // Check if n_name and n_email are different from user.name and user.email
+    if (n_email !== user.email || n_name !== user.name) {
+      dispatch(updateTheProfile(n_name, n_email));
+      handleOpen()
+      dispatch(getTheUserProfile())
+    }
+    else{
+        handleOpen()
+      }
     // dispatch(loginUser(email, password))
     // navigate('/')
+    // handleOpen()
   }
+  
+
+  useEffect(() => {
+
+    // if (isUpdated) {
+    //     navigate('/user-profile');
+    //   }
+ 
+    }, [dispatch, isUpdated,updateProfile])
 
   
   return (
     <>
     
 {/* update profile dialog box */}
-<Dialog
+
+<ToastAlert/>
+{loading ? (<h1>Loading.....</h1>):(<>
+
+  <Dialog
         size="xs"
         open={open}
         handler={handleOpen}
@@ -70,6 +100,10 @@ const UpdateProfile = ({handleOpen, open}) => {
             </form>
         </Card>
       </Dialog>
+
+</>)}
+
+
 
     </>
   )

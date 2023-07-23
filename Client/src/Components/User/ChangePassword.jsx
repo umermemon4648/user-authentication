@@ -2,7 +2,6 @@ import React, {useState, useEffect} from 'react'
 import {
   Card,
   Input,
-  Checkbox,
   Button,
   Typography,
 } from "@material-tailwind/react";
@@ -10,11 +9,11 @@ import {toast } from 'react-toastify';
 import ToastAlert from '../../layout/ToastAlert';
 import { Link, useNavigate } from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux'
-import { changePassowrd } from '../../redux/actions/profileAction';
-
+import { changePassword } from '../../redux/actions/profileAction';
+import { Helmet } from 'react-helmet';
 
 const ChangePassword = () => {
-  const {message, error, isUpdated} = useSelector(state => state.profile)
+  const {p_message, p_error, isUpdated} = useSelector(state => state.profile)
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
@@ -35,27 +34,28 @@ const ChangePassword = () => {
     if (!(o_password && n_password)) {
       return toast.warn("Please Complete all fields")
     }
-    dispatch(changePassowrd(o_password, n_password))
+    dispatch(changePassword(o_password, n_password))
   }
 
 
 
 
   useEffect(() => {
-      if (error) {
-        toast.error(error)
-        dispatch({type: 'clearError'})
-      }
-  
-      if (message) {
-        toast.success(message)
-        dispatch({type: 'clearMessage'})
-      }
-      if (isUpdated) {
+    // if (p_error) {
+    //   toast.error(p_error)
+    //   dispatch({type: 'clearError1'})
+    // }
+
+    // if (p_message) {
+    //   toast.success(p_message)
+    //   dispatch({type: 'clearMessage1'})
+    // }
+
+    if (isUpdated) {
         navigate('/user-profile');
       }
  
-    }, [dispatch, error, message, isUpdated])
+    }, [dispatch, isUpdated])
 
 
     // if (loading) {
@@ -65,6 +65,9 @@ const ChangePassword = () => {
 
   return (
     <>
+<Helmet>
+<title>Change Password</title>
+</Helmet>
 <ToastAlert/>
         <div className="flex items-center justify-center my-12">
 

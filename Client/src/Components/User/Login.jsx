@@ -2,7 +2,6 @@ import React, {useState, useEffect} from 'react'
 import {
   Card,
   Input,
-  Checkbox,
   Button,
   Typography,
   Spinner ,
@@ -13,7 +12,7 @@ import { loginUser } from '../../redux/actions/userAction';
 import ToastAlert from '../../layout/ToastAlert';
 import {toast } from 'react-toastify';
 import { isValidEmail } from '../../utility/reuseFunctions';
-
+import { Helmet } from 'react-helmet';
 
 const Login = ({loading, isAuthenticate}) => {
   const dispatch = useDispatch()
@@ -40,7 +39,6 @@ const Login = ({loading, isAuthenticate}) => {
 
 
       dispatch(loginUser(email, password))
-      console.log("succees in Login: ", success);
     
       // .then(()=> navigate(`/`))
     }
@@ -54,6 +52,12 @@ const Login = ({loading, isAuthenticate}) => {
 
   return (
     <>
+
+<Helmet>
+<title>Login</title>
+</Helmet>
+
+
     <ToastAlert/>
 {loading&& <Spinner/> }
 
@@ -77,7 +81,7 @@ const Login = ({loading, isAuthenticate}) => {
            color="gray"
            className="flex justify-end items-center font-normal"
          >
-          <a href="#" className="text-end items-end  font-medium transition-colors text-blue-600 hover:text-blue-500">Forgot your password?</a>
+          <Link to={'/forget-password'} className="text-end items-end  font-medium transition-colors text-blue-600 hover:text-blue-500">Forgot your password?</Link>
          </Typography>
      
          {loading ? (

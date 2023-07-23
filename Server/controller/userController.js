@@ -34,19 +34,19 @@ const registerUser =  catchAsyncError(async(req, res)=>{
         const salt = await bcrypt.genSalt(10);
         const securedPassword = await bcrypt.hash(password, salt);
         
-        // const myCloud = await cloudinary.v2.uploader.upload(req.body.avatar, {
-        //   folder: "userAvatar",
-        //   width: 150,
-        //   crop: "scale",
-        // });
+        const myCloud = await cloudinary.v2.uploader.upload(req.body.avatar, {
+          folder: "userAvatar",
+          width: 150,
+          crop: "scale",
+        });
     const user  = await User.create({ 
         name,
         email,
         password: securedPassword,
-        // avatar: {
-        //   public_id: myCloud.public_id,
-        //   url: myCloud.secure_url,
-        // },
+        avatar: {
+          public_id: myCloud.public_id,
+          url: myCloud.secure_url,
+        },
     })
     
     await user.save()
@@ -128,9 +128,9 @@ const logoutUser = catchAsyncError(async (req, res) => {
 
 const changeUserPassword = catchAsyncError(async (req, res) => {
   const {oldPassword, newPassword} = req.body
-  if(!(oldPassword && newPassword)){
-    return errorHandler(res, 400, 'Please, Complete All fields');
-  }
+  // if(!(oldPassword && newPassword)){
+  //   return errorHandler(res, 400, 'Please, Complete All fields');
+  // }
   const user = await User.findById(req.user._id)
   if (!user) {
     return errorHandler(res, 400, 'Please, provide correct credentials');
@@ -166,7 +166,7 @@ const updateProfile = catchAsyncError(async (req, res) => {
   if(name) user.name = name
   if(email) user.email = email
   await user.save()
-  return res.status(200).json({ success: true, user, message:"Profile Updated Successfully"});
+  return res.status(200).json({ success: true, message:"Profile Updated Successfully"});
 });
 
 const updateUserAvatar = catchAsyncError(async (req, res) => {
@@ -213,7 +213,7 @@ const forgetUserPassword = catchAsyncError(async (req, res) => {
   await user.save()
 
   // http://localhost:3000/rest-token/jwrwueur87234jsjf
-  const url = `${process.env.FRONTEND_URL}/rest-token/${resetToken}`
+  const url = `${process.env.FRONTEND_URL}/reset-password/${resetToken}`
   const txt = `Click on the given link to reset your password. ${url}, If you haven't request, Please ignore the message
   `
 
@@ -225,7 +225,7 @@ const forgetUserPassword = catchAsyncError(async (req, res) => {
 });
 
 
-// Forget Password
+// Reset Password Token
 const resetUserPassword = catchAsyncError(async (req, res) => {
   const  {resetToken} = req.params
   const addResetToken = crypto.createHash("sha256").update(resetToken).digest("hex")

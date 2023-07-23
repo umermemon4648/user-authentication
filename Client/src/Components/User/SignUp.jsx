@@ -14,6 +14,9 @@ import userImg from '../../images/user.png'
 import {useDispatch} from 'react-redux'
 import { registerTheUser } from '../../redux/actions/userAction';
 import { isValidEmail } from '../../utility/reuseFunctions';
+import { Helmet } from 'react-helmet';
+
+
 
 const SignUp = ({loading, isAuthenticate}) => {
   const dispatch = useDispatch()
@@ -29,7 +32,7 @@ const SignUp = ({loading, isAuthenticate}) => {
 
 
   const getSignUpData = (e) => {
-    activeRef.current.focus()
+   
     const { name, value } = e.target;
     console.log("signUp = ",signUp);
     if (name === "avatar") {
@@ -86,6 +89,10 @@ useEffect(() => {
 
   return (
     <>
+    <Helmet>
+<title>SignUp</title>
+</Helmet>
+
     <ToastAlert/>
 
     <div className="flex items-center justify-center my-12">

@@ -1,20 +1,23 @@
 import React, {useState, useEffect} from 'react'
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import {Link, useNavigate  } from "react-router-dom";
 import userImg from '../../images/user.png'
 import UpdateProfile from './UpdateProfile';
 import UpdateUserAvatar from './UpdateUserAvatar';
-
+import { Helmet } from 'react-helmet';
 import {
     Typography,
     Button,
   } from "@material-tailwind/react";
+import { getTheUserProfile } from '../../redux/actions/userAction';
 
 
 
 const UserProfile = () => {
-  const {isAuthenticate, user} = useSelector((state)=> state.user)
-    const navigate = useNavigate();
+  const {isAuthenticate, user, loading} = useSelector((state)=> state.user)
+  const {p_message, p_error, isUpdated} = useSelector(state => state.profile)
+  const dispatch = useDispatch()
+
 
     // update profile dialog box
     const [open, setOpen] = useState(false);
@@ -28,12 +31,24 @@ const UserProfile = () => {
 
 
     useEffect(() => {
-      
-    }, [])
+    // if (isUpdated) {
+    // }
+    dispatch(getTheUserProfile())
+    }, [isAuthenticate, dispatch, isUpdated])
     
   return (
     <>
-    <div className="profile-main-div flex md:flex-row flex-col my-9 md:mx-12 mx-auto h-full justify-center md:justify-start items-center md:items-start">
+
+<Helmet>
+<title>User Profile</title>
+</Helmet>
+
+{loading ? (<>
+<h1>Loading.....</h1>
+</>)
+: 
+(<>
+<div className="profile-main-div flex md:flex-row flex-col my-9 md:mx-12 mx-auto h-full justify-center md:justify-start items-center md:items-start">
 
 <div className="  flex flex-col 1-col-profile mx-16 md:w-1/2 w-full  justify-center items-center ">
   <div className="user-avatar md:h-64 md:w-64 h-48 w-48 rounded-full border border-gray-200 mb-7">
@@ -77,8 +92,15 @@ const UserProfile = () => {
 
 </div>
 </div>
+
+ 
+
 <UpdateProfile handleOpen={handleOpen} open={open} />
 <UpdateUserAvatar handleOpen={handleOpen1} open={open1} />
+</>)
+}
+
+
 
 
 
