@@ -7,11 +7,13 @@ import {
   Checkbox,
   Button,
   Typography,
+  Spinner,
 } from "@material-tailwind/react";
 import { Link, useNavigate } from 'react-router-dom';
 import userImg from '../../images/user.png'
 import {useDispatch} from 'react-redux'
 import { registerTheUser } from '../../redux/actions/userAction';
+import { isValidEmail } from '../../utility/reuseFunctions';
 
 const SignUp = ({loading, isAuthenticate}) => {
   const dispatch = useDispatch()
@@ -64,12 +66,15 @@ const SignUp = ({loading, isAuthenticate}) => {
     // myform.set("password", password)
     // myform.set("avatar", avatar)
 
+    if (!(name && password && email)) {
+      return toast.warn("Please Complete all fields")
+    }
+    if (!isValidEmail(email)) {
+      return toast.warn("Enter a valid email")
+    }
     dispatch(registerTheUser(name, email, password))
-    // .then(()=> navigate(`/auth/login`))
+    
   }
-  // alert(activeRef.current)
-
-
 
 useEffect(() => {
   if (isAuthenticate) {
@@ -94,7 +99,7 @@ useEffect(() => {
       </Typography>
       <form onSubmit={submitHandler} method="POST" className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96">
         <div className="mb-4 flex flex-col gap-6">
-          <Input autoFocus ref={activeRef} size="lg" label="Name" onChange={getSignUpData} value={signUp.name} name="name" />
+          <Input autoFocus  size="lg" label="Name" onChange={getSignUpData} value={signUp.name} name="name" />
           <Input size="lg" label="Email" onChange={getSignUpData} value={signUp.email} name="email" />
           <Input type="password" size="lg" label="Password" onChange={getSignUpData} value={signUp.password} name="password" />
           <div className='flex justify-center items-center'>

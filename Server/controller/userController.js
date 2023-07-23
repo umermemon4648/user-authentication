@@ -128,7 +128,7 @@ const logoutUser = catchAsyncError(async (req, res) => {
 
 const changeUserPassword = catchAsyncError(async (req, res) => {
   const {oldPassword, newPassword} = req.body
-  if(!oldPassword || !newPassword){
+  if(!(oldPassword && newPassword)){
     return errorHandler(res, 400, 'Please, Complete All fields');
   }
   const user = await User.findById(req.user._id)

@@ -10,6 +10,9 @@ import {
 import { Link, useNavigate } from 'react-router-dom';
 import {useDispatch} from 'react-redux'
 import { loginUser } from '../../redux/actions/userAction';
+import ToastAlert from '../../layout/ToastAlert';
+import {toast } from 'react-toastify';
+import { isValidEmail } from '../../utility/reuseFunctions';
 
 
 const Login = ({loading, isAuthenticate}) => {
@@ -28,6 +31,14 @@ const Login = ({loading, isAuthenticate}) => {
     const submitHandler = (e)=>{
       e.preventDefault()
       const {email, password} = login
+      if (!(password && email)) {
+        return toast.warn("Please provide email and password")
+      }
+      if (!isValidEmail(email)) {
+        return toast.warn("Enter a valid email")
+      }
+
+
       dispatch(loginUser(email, password))
       console.log("succees in Login: ", success);
     
@@ -38,11 +49,12 @@ const Login = ({loading, isAuthenticate}) => {
       if (isAuthenticate) {
         navigate(`/`)
       }
+
     }, [dispatch, isAuthenticate, loading])
 
   return (
     <>
-    
+    <ToastAlert/>
 {loading&& <Spinner/> }
 
     <div className="flex items-center justify-center my-12">

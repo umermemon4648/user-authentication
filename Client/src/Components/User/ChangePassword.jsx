@@ -7,16 +7,14 @@ import {
   Typography,
 } from "@material-tailwind/react";
 import {toast } from 'react-toastify';
-// import ToastAlert from './layout/ToastAlert';
 import ToastAlert from '../../layout/ToastAlert';
-
 import { Link, useNavigate } from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux'
 import { changePassowrd } from '../../redux/actions/profileAction';
 
 
 const ChangePassword = () => {
-  const {message, error, loading} = useSelector(state => state.profile)
+  const {message, error, isUpdated} = useSelector(state => state.profile)
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
@@ -34,8 +32,10 @@ const ChangePassword = () => {
   const submitHandler = (e)=>{
     e.preventDefault()
     const {o_password, n_password} = data
+    if (!(o_password && n_password)) {
+      return toast.warn("Please Complete all fields")
+    }
     dispatch(changePassowrd(o_password, n_password))
- 
   }
 
 
@@ -51,13 +51,17 @@ const ChangePassword = () => {
         toast.success(message)
         dispatch({type: 'clearMessage'})
       }
-
-      if (loading) {
-        navigate('/user-profile')
-        
+      if (isUpdated) {
+        navigate('/user-profile');
       }
-    }, [dispatch, error, message])
+ 
+    }, [dispatch, error, message, isUpdated])
 
+
+    // if (loading) {
+    //   navigate('/user-profile')
+      
+    // }
 
   return (
     <>

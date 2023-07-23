@@ -15,12 +15,15 @@ export const profileReducer = createReducer({},{
 
     changePasswordRequest: (state)=>{
         state.loading = true
+        state.isUpdated = false
     },
     changePasswordSuccess: (state,action)=>{
         state.loading = false
+        state.isUpdated = true
         state.message = action.payload.message
     },
     changePasswordFail: (state, action)=>{
+        state.isUpdated = false
         state.loading = false
         state.error = action.payload
     },
