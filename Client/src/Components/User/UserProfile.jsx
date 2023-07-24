@@ -53,7 +53,12 @@ const UserProfile = () => {
 <div className="  flex flex-col 1-col-profile mx-16 md:w-1/2 w-full  justify-center items-center ">
   <div className="user-avatar md:h-64 md:w-64 h-48 w-48 rounded-full border border-gray-200 mb-7">
     {/* <img className='h-full w-full object-cover object-center' src={user.avatar.url} alt="" /> */}
-    <img className='h-full w-full object-cover object-center' src={userImg} alt="" />
+    {user.avatar?.url ? (
+  <img className='h-full w-full object-cover object-center' src={user.avatar.url} alt="user.avatar.url" />
+) : (
+  <img className='h-full w-full object-cover object-center' src={userImg} alt="userImg" />
+)}
+
   </div>
 
   <div className='text-center'> 

@@ -3,12 +3,12 @@ import axios from 'axios'
 
 
 
-export const registerTheUser = (name, email, password) => async(dispatch)=>{
+export const registerTheUser = (myform) => async(dispatch)=>{
     try {
         dispatch({type: 'registerUserRequest'});
         const config = {headers: {'Content-Type': 'multipart/form-data'}, withCredentials : true}
         let url = `${API_BASE_URL}/newUser`
-        const { data } = await axios.post(url,{name,email, password},config)
+        const { data } = await axios.post(url,myform,config)
 
         dispatch({
             type: 'registerUserSuccess',

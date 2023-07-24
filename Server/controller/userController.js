@@ -33,7 +33,7 @@ const registerUser =  catchAsyncError(async(req, res)=>{
         }
         const salt = await bcrypt.genSalt(10);
         const securedPassword = await bcrypt.hash(password, salt);
-        
+        // req.files.avatar.tempFilePath
         const myCloud = await cloudinary.v2.uploader.upload(req.body.avatar, {
           folder: "userAvatar",
           width: 150,

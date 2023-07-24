@@ -11,14 +11,16 @@ import {
 } from "@material-tailwind/react";
 import { Link, useNavigate } from 'react-router-dom';
 import userImg from '../../images/user.png'
-import {useDispatch} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 import { registerTheUser } from '../../redux/actions/userAction';
 import { isValidEmail } from '../../utility/reuseFunctions';
 import { Helmet } from 'react-helmet';
 
 
 
-const SignUp = ({loading, isAuthenticate}) => {
+const SignUp = ({loading}) => {
+  const {isAuthenticate} = useSelector(state => state.user)
+
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const [signUp, setSignUp] = useState({
@@ -60,14 +62,14 @@ const SignUp = ({loading, isAuthenticate}) => {
   };
   
 
-  const submitHandler = (e)=>{
+  const submitHandler = async(e)=>{
     e.preventDefault()
     const {name, email, password} = signUp
     const myform =  new FormData()
-    // myform.set("name", name)
-    // myform.set("email", email)
-    // myform.set("password", password)
-    // myform.set("avatar", avatar)
+    myform.set("name", name)
+    myform.set("email", email)
+    myform.set("password", password)
+    myform.set("avatar", avatar)
 
     if (!(name && password && email)) {
       return toast.warn("Please Complete all fields")
@@ -75,15 +77,16 @@ const SignUp = ({loading, isAuthenticate}) => {
     if (!isValidEmail(email)) {
       return toast.warn("Enter a valid email")
     }
-    dispatch(registerTheUser(name, email, password))
-    
+    dispatch(registerTheUser(myform))
+      setAvatar(null); // Clear avatar state
+  
   }
 
 useEffect(() => {
-  if (isAuthenticate) {
-    navigate(`/auth/login`)
-  }
-}, [dispatch, signUp, avatar, previewAvatar])
+  // if (isAuthenticate) {
+  //   navigate(`/auth/login`)
+  // }
+}, [dispatch, signUp, avatar, previewAvatar, isAuthenticate])
 
 
 
@@ -113,7 +116,8 @@ useEffect(() => {
             <div className=''>
           <img src={previewAvatar} width={30} height ={5} alt="" srcSet="" />
             </div>
-          <Input onChange={getSignUpData}  type="file" size="lg" name='avatar' accept='image/*'/>
+          <Input onChange={getSignUpData}  type="file" size="lg" name='avatar' accept='image/*'
+          />
           </div>
           
         </div>
