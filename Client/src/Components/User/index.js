@@ -4,6 +4,7 @@ import UserProfile from "./UserProfile";
 import ChangePassword from "./ChangePassword";
 import ForgetPassword from "./ForgetPassword";
 import PasswordRecovery from "./PasswordRecovery";
+// import UpdateProfile from "./UpdateProfile";
 
 
 export{
@@ -13,4 +14,5 @@ export{
     ChangePassword,
     ForgetPassword,
     PasswordRecovery,
+    // UpdateProfile,
 }

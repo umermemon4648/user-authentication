@@ -57,7 +57,7 @@ const ChangePassword = () => {
         navigate('/user-profile');
       }
  
-    }, [dispatch, isUpdated])
+    }, [dispatch, isUpdated, navigate])
 
 
     // if (loading) {

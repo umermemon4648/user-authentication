@@ -61,7 +61,7 @@ const UpdateProfile = ({handleOpen, open}) => {
     //     navigate('/user-profile');
     //   }
  
-    }, [dispatch, isUpdated,updateProfile])
+    }, [dispatch,updateProfile])
 
   
   return (

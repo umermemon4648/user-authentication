@@ -76,14 +76,17 @@ export const profileReducer = createReducer({},{
 
     updateAvatarRequest: (state)=>{
         state.loading = true
+        state.isAvatarUpdated = false
     },
     updateAvatarSuccess: (state,action)=>{
         state.loading = false
         state.p_message = action.payload.message
+        state.isAvatarUpdated = true
     },
     updateAvatarFail: (state, action)=>{
         state.loading = false
         state.p_error = action.payload
+        state.isAvatarUpdated = false
     },
 
 

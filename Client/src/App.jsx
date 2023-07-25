@@ -6,7 +6,7 @@ import {useDispatch, useSelector} from 'react-redux'
 
 import ProtectedRoute from './routes/ProtectedRoute';
 import { NavbarUI, FooterUI, Hero, ErrorPage, Hero1 } from './Components/Home';
-import { SignUp, Login, UserProfile, ChangePassword, ForgetPassword, PasswordRecovery} from './Components/User';
+import { SignUp, Login, UserProfile, ChangePassword, ForgetPassword, PasswordRecovery, } from './Components/User';
 
 
 
@@ -86,6 +86,7 @@ export default function App() {
 <Route element={<ProtectedRoute isAuthenticate={isAuthenticate} />}>
 <Route exact path="/user-profile" element={<UserProfile/>}/>
 <Route exact path="/change-password" element={<ChangePassword/>}/>
+{/* <Route exact path="/update-profile" element={<UpdateProfile/>}/> */}
 </Route>
 
 {/* <Route element={<ProtectedRoute isAuthenticate={!isAuthenticate} />}>

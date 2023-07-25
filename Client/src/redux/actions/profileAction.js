@@ -6,7 +6,7 @@ export const updateTheProfile = (name, email) => async(dispatch)=>{
         dispatch({type:'updateProfileRequest'})
         const config = {headers: {'Content-Type':'application/json'}, withCredentials: true}
         const url = `${API_BASE_URL}/update-profile`
-        const {data} = axios.put(url,  {name,email}, config)
+        const {data} = await axios.put(url,  {name,email}, config)
 
         dispatch({
           
@@ -35,7 +35,6 @@ export const changePassword = (oldPassword, newPassword) => async(dispatch)=>{
             withCredentials: true,
           };
           let url = `${API_BASE_URL}/change-password`;
-        //   const { data } = await axios.put(url, { o_password, n_password }, config);
           const { data } = await axios.put(url, { oldPassword, newPassword }, config );
         console.log("Change passwod: ", data);
           dispatch({
@@ -62,7 +61,7 @@ export const changeAvatar = (formData) => async(dispatch)=>{
         dispatch({type:'updateAvatarRequest'})
         const config = {headers: {'Content-Type':'multipart/form-data'}, withCredentials: true}
         const url = `${API_BASE_URL}/update-user-avatar`
-        const {data} = axios.put(url, formData, config)
+        const {data} = await axios.put(url, formData, config)
 
         dispatch({
             type: 'updateAvatarSuccess',

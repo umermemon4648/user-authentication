@@ -84,6 +84,10 @@ const UserProfile = () => {
 <div className=''> 
     
  <Button onClick={handleOpen} ripple={true}>Update Profile</Button> 
+{/* <Link to={'/update-profile'}>
+ <Button ripple={true}>Update Profile</Button> 
+</Link> */}
+   
     </div>
 
     <div className=''>
@@ -99,6 +103,7 @@ const UserProfile = () => {
  
 
 <UpdateProfile handleOpen={handleOpen} open={open} />
+
 <UpdateUserAvatar handleOpen={handleOpen1} open={open1} />
 
 

@@ -19,7 +19,7 @@ import { getTheUserProfile } from '../../redux/actions/userAction';
 import { useNavigate } from 'react-router-dom';
 
 const UpdateUserAvatar = ({open, handleOpen}) => {
-  const {isUpdated,loading} = useSelector(state => state.profile)
+  const {isAvatarUpdated,loading} = useSelector(state => state.profile)
   const {isAuthenticate} = useSelector(state => state.user)
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -44,21 +44,23 @@ const UpdateUserAvatar = ({open, handleOpen}) => {
         }
       } 
     }
-    const submitHandler = (e)=>{
+    const submitHandler = async(e)=>{
       e.preventDefault()
       const myform =  new FormData()
       myform.set("avatar", avatar)
-      dispatch(changeAvatar(myform))
+      await dispatch(changeAvatar(myform))
       dispatch(getTheUserProfile())
-      // handleOpen()
-      navigate('/')
+      if (isAvatarUpdated) {
+        handleOpen()
+      }
+      // navigate('/')
       
       
     }
 
     useEffect(() => {
 
-    }, [dispatch, toast, avatar,isAuthenticate])
+    }, [dispatch, toast,isAuthenticate,])
     
   return (
     <>
@@ -88,7 +90,7 @@ const UpdateUserAvatar = ({open, handleOpen}) => {
           </CardBody>
           <CardFooter className="pt-0">
           
-            {loading ? (
+            {isAvatarUpdated===false ? (
   <Button className="mt-6 flex opacity-10 cursor-not-allowed" fullWidth type='submit'>
     <Spinner className='flex mx-auto items-center justify-center' />
   </Button>

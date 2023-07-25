@@ -12,14 +12,17 @@ const Hero1 = () => {
         <div className="mt-12 lg:mt-0 z-10">
           <h1
             className="mt-0 mb-12 text-3xl font-bold tracking-tight md:text-4xl xl:text-5xl text-[hsl(218,81%,95%)]">
-            The best offer <br /><span className="text-[hsl(218,81%,75%)]">for your business</span>
+            Security and protection   <br /><span className="text-[hsl(218,81%,75%)]">are at the core of our offering.</span>
           </h1>
           <p className="opacity-70 text-[hsl(218,81%,85%)]">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-            Temporibus, expedita iusto veniam atque, magni tempora
-            mollitia dolorum consequatur nulla, neque debitis eos
-            reprehenderit quasi ab ipsum nisi dolorem modi. Quos?
+          We strive for excellence in every aspect of your experience. From seamless navigation to personalized recommendations, we tailor our services to suit your unique needs. Our user-centric approach ensures that you receive the utmost care and attention throughout your journey with us.
           </p>
+          <p className="mt-1 opacity-70 text-[hsl(218,81%,85%)]">
+
+Our dedicated support team is available 24/7, ready to assist you at any time. Your satisfaction is our top priority, and we are here to answer your questions, address concerns, and ensure you have a smooth and fulfilling experience on our platform.
+          </p>
+
+
         </div>
         <div className="relative mb-12 lg:mb-0">
           <div id="radius-shape-1" className="absolute rounded-full shadow-lg"></div>
@@ -44,13 +47,13 @@ const Hero1 = () => {
           <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(1).jpg"
             className="w-32 rounded-full shadow-lg dark:shadow-black/20" />
         </div>
-        <h5 className="mb-2 text-lg font-bold">Maria Smantha</h5>
+        <h5 className="mb-2 text-lg font-bold">Emma Johnson</h5>
         <h6 className="mb-4 font-medium text-primary dark:text-primary-400">
           Web Developer
         </h6>
         <p className="mb-4">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod eos
-          id officiis hic tenetur quae quaerat ad velit ab hic.
+          
+        An outstanding web developer! Their expertise and problem-solving skills are remarkable. They delivered a flawless website that exceeded my expectations. Highly recommend their services!
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 96 960 960" className="inline-block w-6">
             <path fill="currentColor"
               d="M580 556h160V396H580v160Zm-360 0h160V396H220v160Zm406 220 80-160H520V336h280v288l-76 152h-98Zm-360 0 80-160H160V336h280v288l-76 152h-98Zm34-300Zm360 0Z" />
@@ -94,13 +97,12 @@ const Hero1 = () => {
           <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(2).jpg"
             className="w-32 rounded-full shadow-lg dark:shadow-black/20" />
         </div>
-        <h5 className="mb-2 text-lg font-bold">Lisa Cudrow</h5>
+        <h5 className="mb-2 text-lg font-bold">Sophia Brown</h5>
         <h6 className="mb-4 font-medium text-primary dark:text-primary-400">
           Graphic Designer
         </h6>
         <p className="mb-4">
-          Ut enim ad minima veniam, quis nostrum exercitationem ullam
-          corporis suscipit laboriosam, nisi ut aliquid commodi.
+        Exceptional creativity and top-notch designs! The graphic designer's work exceeded my expectations. Their attention to detail and artistic flair brought my vision to life. Highly recommended for any design project!
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 96 960 960" className="inline-block w-6">
             <path fill="currentColor"
               d="M580 556h160V396H580v160Zm-360 0h160V396H220v160Zm406 220 80-160H520V336h280v288l-76 152h-98Zm-360 0 80-160H160V336h280v288l-76 152h-98Zm34-300Zm360 0Z" />
@@ -149,8 +151,7 @@ const Hero1 = () => {
           Marketing Specialist
         </h6>
         <p className="mb-4">
-          At vero eos et accusamus et iusto odio dignissimos ducimus qui
-          blanditiis praesentium voluptatum deleniti atque corrupti.
+        A marketing specialist par excellence! Their strategic insights and creative campaigns elevated our brand to new heights. Highly recommend their exceptional expertise!
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 96 960 960" className="inline-block w-6">
             <path fill="currentColor"
               d="M580 556h160V396H580v160Zm-360 0h160V396H220v160Zm406 220 80-160H520V336h280v288l-76 152h-98Zm-360 0 80-160H160V336h280v288l-76 152h-98Zm34-300Zm360 0Z" />

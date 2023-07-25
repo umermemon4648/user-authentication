@@ -48,7 +48,7 @@ const Login = ({loading, isAuthenticate}) => {
         navigate(`/`)
       }
 
-    }, [dispatch, isAuthenticate, loading, Helmet])
+    }, [dispatch, isAuthenticate, loading, navigate])
 
   return (
     <>

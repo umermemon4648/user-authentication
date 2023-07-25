@@ -43,7 +43,7 @@ const PasswordRecovery = () => {
   
 
     
-    }, [dispatch, isSent, loading, isAuthenticate])
+    }, [dispatch, isSent, loading, isAuthenticate, navigate])
 
 
   return (
