@@ -57,7 +57,7 @@ app.get('/', (req, res) => {
 
 
 
-app.listen(port, ()=>{
+app.listen(BASE_URL, ()=>{
     // console.log(`Your app is running at http://localhost:${port} 🚀`)
     console.log(`Your app is running at ${BASE_URL} 🚀`)
 })
