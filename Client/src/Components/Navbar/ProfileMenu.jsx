@@ -54,7 +54,7 @@ import userImg from '../../images/user.png'
   }
 
   useEffect(() => {
-  }, [dispatch, user, navigate])
+  }, [dispatch, user.avatar.url, navigate])
   
   
 
