@@ -23,7 +23,7 @@ cloudinary.config({
 })
 
 
-app.use(cors({origin: "https://calm-cupcake-cbeb2e.netlify.app/", credentials: true  }))
+app.use(cors({origin: "*", credentials: true  }))
 app.use(express.json())
 app.use(cookieParser())
 app.use(bodyParser.json())
@@ -33,12 +33,12 @@ app.use(fileUpload({
 
 
 
-// app.use(express.static(path.join(__dirname, '../Client/dist')))
+app.use(express.static(path.join(__dirname, '../Client/dist')))
 
 // // static files
-// app.get('*', function (req, res) {
-//   res.sendFile(path.resolve(__dirname, '../Client/dist/index.html'));
-// });
+app.get('*', function (req, res) {
+  res.sendFile(path.resolve(__dirname, '../Client/dist/index.html'));
+});
 
 
 app.get('/', (req, res) => {
