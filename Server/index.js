@@ -7,7 +7,7 @@ const bodyParser = require('body-parser')
 const cloudinary = require('cloudinary').v2;
 const fileUpload = require('express-fileupload')
 const BASE_URL = process.env.BASE_URL
-const path = require('');
+const path = require('path');
 const dotenv = require('dotenv')
 dotenv.config()
 
