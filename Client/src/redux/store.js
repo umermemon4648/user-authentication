@@ -11,4 +11,4 @@ const store = configureStore({
 export default store
 
 
-export const API_BASE_URL = `https://user-authentication-backend-five.vercel.app/api/auth`
+export const API_BASE_URL = 'https://user-authentication-backend.up.railway.app/api/auth'
