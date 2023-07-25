@@ -12,4 +12,4 @@ const store = configureStore({
 export default store
 
 
-export const API_BASE_URL = `http://localhost:5000/api/auth`
+export const API_BASE_URL = `https://user-authentication-api.vercel.app/api/auth`
