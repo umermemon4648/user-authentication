@@ -7,7 +7,7 @@ const bodyParser = require('body-parser')
 const cloudinary = require('cloudinary').v2;
 const fileUpload = require('express-fileupload')
 const BASE_URL = process.env.BASE_URL
-const path = require('../Client/');
+const path = require('');
 const dotenv = require('dotenv')
 dotenv.config()
 
@@ -33,13 +33,11 @@ app.use(fileUpload({
 
 
 // app.use(express.static(path.join(__dirname, './frontend/build')));
-// app.use(express.static(path.join(__dirname, '/')))
+app.use(express.static(path.join(__dirname, '../Client/dist')))
 
 // static files
-
-app.use(express.static(path.join(__dirname, './frontend/build')))
 app.get('*', function (req, res) {
-  res.sendFile(path.resolve(__dirname, './frontend/build/index.html'));
+  res.sendFile(path.resolve(__dirname, '../Client/dist/index.html'));
 });
 
 
