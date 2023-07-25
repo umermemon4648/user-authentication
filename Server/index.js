@@ -14,7 +14,7 @@ const app = express()
 dbConnection()
 
 const BASE_URL = process.env.BASE_URL
-// const port = 5000
+const port = 5000
 // cloudinary
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_NAME,
@@ -57,7 +57,7 @@ app.get('/', (req, res) => {
 
 
 
-app.listen(BASE_URL, ()=>{
+app.listen(port, ()=>{
     // console.log(`Your app is running at http://localhost:${port} 🚀`)
     console.log(`Your app is running at ${BASE_URL} 🚀`)
 })
