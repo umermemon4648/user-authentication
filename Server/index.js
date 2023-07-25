@@ -32,13 +32,12 @@ app.use(fileUpload({
 
 
 
-// app.use(express.static(path.join(__dirname, './frontend/build')));
-app.use(express.static(path.join(__dirname, '../Client/dist')))
+// app.use(express.static(path.join(__dirname, '../Client/dist')))
 
-// static files
-app.get('*', function (req, res) {
-  res.sendFile(path.resolve(__dirname, '../Client/dist/index.html'));
-});
+// // static files
+// app.get('*', function (req, res) {
+//   res.sendFile(path.resolve(__dirname, '../Client/dist/index.html'));
+// });
 
 
 app.get('/', (req, res) => {
