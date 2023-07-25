@@ -6,12 +6,12 @@ const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser') 
 const cloudinary = require('cloudinary').v2;
 const fileUpload = require('express-fileupload')
-
-const app = express()
+const BASE_URL = process.env.BASE_URL
+const path = require('../Client/');
 const dotenv = require('dotenv')
 dotenv.config()
 
-const port = 5000
+const app = express()
 dbConnection()
 
 // cloudinary
@@ -32,6 +32,17 @@ app.use(fileUpload({
 
 
 
+// app.use(express.static(path.join(__dirname, './frontend/build')));
+// app.use(express.static(path.join(__dirname, '/')))
+
+// static files
+
+app.use(express.static(path.join(__dirname, './frontend/build')))
+app.get('*', function (req, res) {
+  res.sendFile(path.resolve(__dirname, './frontend/build/index.html'));
+});
+
+
 app.get('/', (req, res) => {
     res.send('Hello World!')
   })
@@ -48,6 +59,6 @@ app.get('/', (req, res) => {
 
 
 
-app.listen(port, ()=>{
-    console.log(`Your app is running at http://localhost:${port} 🚀`)
+app.listen(BASE_URL, ()=>{
+    console.log(`Your app is running at http://localhost:${BASE_URL} 🚀`)
 })
