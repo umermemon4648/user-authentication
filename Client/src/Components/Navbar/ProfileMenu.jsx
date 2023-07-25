@@ -70,14 +70,25 @@ import userImg from '../../images/user.png'
           className="flex items-center gap-1 rounded-full py-0.5 pr-2 pl-0.5 lg:ml-auto"
         >
          
-
+{user.avatar.url ? (
+    <Avatar
+    variant="circular"
+    size="sm"
+    alt="user.avatar.url"
+    className="border border-blue-500 p-0.5"
+    src={user.avatar.url}
+  />
+  
+): (
   <Avatar
   variant="circular"
   size="sm"
   alt="user.avatar.url"
   className="border border-blue-500 p-0.5"
-  src={user.avatar.url}
+  src={userImg}
 />
+
+)}
 
     
 
