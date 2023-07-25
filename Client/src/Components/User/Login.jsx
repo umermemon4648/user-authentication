@@ -48,7 +48,7 @@ const Login = ({loading, isAuthenticate}) => {
         navigate(`/`)
       }
 
-    }, [dispatch, isAuthenticate, loading])
+    }, [dispatch, isAuthenticate, loading, Helmet])
 
   return (
     <>
@@ -59,7 +59,6 @@ const Login = ({loading, isAuthenticate}) => {
 
 
     <ToastAlert/>
-{loading&& <Spinner/> }
 
     <div className="flex items-center justify-center my-12">
 

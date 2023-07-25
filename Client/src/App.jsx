@@ -5,7 +5,7 @@ import {useDispatch, useSelector} from 'react-redux'
 
 
 import ProtectedRoute from './routes/ProtectedRoute';
-import { NavbarUI, FooterUI, Hero, ErrorPage } from './Components/Home';
+import { NavbarUI, FooterUI, Hero, ErrorPage, Hero1 } from './Components/Home';
 import { SignUp, Login, UserProfile, ChangePassword, ForgetPassword, PasswordRecovery} from './Components/User';
 
 
@@ -17,6 +17,9 @@ import {
   redirect,
 } from "react-router-dom";
 import { getTheUserProfile } from './redux/actions/userAction';
+// import Loader from './layout/Loader';
+
+
 
 export default function App() {
   const dispatch = useDispatch()
@@ -58,42 +61,49 @@ export default function App() {
   
 
   return (
-<>
+    <>
 <ToastAlert/>
 <Router>
+  <NavbarUI/>
 
-<NavbarUI/>
-
+{/* {loading===true ? (<Loader/>): (<> */}
   <Routes>
 
-      <Route exact path="/" element={<Hero/>}/>
-      <Route  exact path="/auth/login" element={<Login loading={loading} isAuthenticate = {isAuthenticate} />}/>
-      <Route exact path="/auth/signup" element={<SignUp loading={loading} isAuthenticate = {isAuthenticate}/>}/>
+{/* <Route exact path="/" element={<Hero/>}/> */}
+<Route exact path="/" element={<Hero1/>}/>
+<Route  exact path="/auth/login" element={<Login loading={loading} isAuthenticate = {isAuthenticate} />}/>
+<Route exact path="/auth/signup" element={<SignUp loading={loading} isAuthenticate = {isAuthenticate}/>}/>
 
-      <Route exact path="/forget-password" element={<ForgetPassword/>}/>
-      <Route exact path="/reset-password/:resetToken" element={<PasswordRecovery/>}/>
-
-
-
+<Route exact path="/forget-password" element={<ForgetPassword/>}/>
+<Route exact path="/reset-password/:resetToken" element={<PasswordRecovery/>}/>
 
 
-     
-  {/* Protected Routes */}
-  <Route element={<ProtectedRoute isAuthenticate={isAuthenticate} />}>
-      <Route exact path="/user-profile" element={<UserProfile/>}/>
-      <Route exact path="/change-password" element={<ChangePassword/>}/>
-  </Route>
 
-  {/* <Route element={<ProtectedRoute isAuthenticate={!isAuthenticate} />}>
-  </Route> */}
+
+
+
+{/* Protected Routes */}
+<Route element={<ProtectedRoute isAuthenticate={isAuthenticate} />}>
+<Route exact path="/user-profile" element={<UserProfile/>}/>
+<Route exact path="/change-password" element={<ChangePassword/>}/>
+</Route>
+
+{/* <Route element={<ProtectedRoute isAuthenticate={!isAuthenticate} />}>
+</Route> */}
 
 
 <Route  exact path ="*" element = {  <ErrorPage /> } />
 
-  </Routes>
+</Routes>
+
+
+{/* </>)} */}
+
+  
+
+
 
 <FooterUI/>
-
 </Router>
 
 

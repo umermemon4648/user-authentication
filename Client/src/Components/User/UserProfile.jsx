@@ -10,12 +10,12 @@ import {
     Button,
   } from "@material-tailwind/react";
 import { getTheUserProfile } from '../../redux/actions/userAction';
-
+import Loader from '../../layout/Loader'
 
 
 const UserProfile = () => {
   const {isAuthenticate, user, loading} = useSelector((state)=> state.user)
-  const {p_message, p_error, isUpdated} = useSelector(state => state.profile)
+  const { isUpdated} = useSelector(state => state.profile)
   const dispatch = useDispatch()
 
 
@@ -31,8 +31,6 @@ const UserProfile = () => {
 
 
     useEffect(() => {
-    // if (isUpdated) {
-    // }
     dispatch(getTheUserProfile())
     }, [isAuthenticate, dispatch, isUpdated])
     
@@ -43,11 +41,11 @@ const UserProfile = () => {
 <title>User Profile</title>
 </Helmet>
 
-{loading ? (<>
-<h1>Loading.....</h1>
-</>)
+{loading ? (<Loader/>)
 : 
 (<>
+
+
 <div className="profile-main-div flex md:flex-row flex-col my-9 md:mx-12 mx-auto h-full justify-center md:justify-start items-center md:items-start">
 
 <div className="  flex flex-col 1-col-profile mx-16 md:w-1/2 w-full  justify-center items-center ">
@@ -102,6 +100,8 @@ const UserProfile = () => {
 
 <UpdateProfile handleOpen={handleOpen} open={open} />
 <UpdateUserAvatar handleOpen={handleOpen1} open={open1} />
+
+
 </>)
 }
 

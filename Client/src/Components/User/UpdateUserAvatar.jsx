@@ -16,12 +16,13 @@ import ToastAlert from '../../layout/ToastAlert'
 import {useDispatch, useSelector} from 'react-redux'
 import { changeAvatar } from '../../redux/actions/profileAction';
 import { getTheUserProfile } from '../../redux/actions/userAction';
-
+import { useNavigate } from 'react-router-dom';
 
 const UpdateUserAvatar = ({open, handleOpen}) => {
-  const {loading, isUpdated} = useSelector(state => state.profile)
+  const {isUpdated,loading} = useSelector(state => state.profile)
   const {isAuthenticate} = useSelector(state => state.user)
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   const [avatar, setAvatar] = useState(userImg)
     const getInputData = (e)=>{
       if (avatar) {
@@ -43,23 +44,21 @@ const UpdateUserAvatar = ({open, handleOpen}) => {
         }
       } 
     }
-    const submitHandler = async(e)=>{
+    const submitHandler = (e)=>{
       e.preventDefault()
       const myform =  new FormData()
-    myform.set("avatar", avatar)
-
+      myform.set("avatar", avatar)
       dispatch(changeAvatar(myform))
-      handleOpen()
-      await dispatch(getTheUserProfile())
-        navigate(`/user-profile`)
-
+      dispatch(getTheUserProfile())
+      // handleOpen()
+      navigate('/')
+      
+      
     }
 
     useEffect(() => {
-      // if (isAuthenticate) {
-      //   navigate(`/auth/login`)
-      // }
-    }, [dispatch, toast, avatar,isAuthenticate, loading])
+
+    }, [dispatch, toast, avatar,isAuthenticate])
     
   return (
     <>

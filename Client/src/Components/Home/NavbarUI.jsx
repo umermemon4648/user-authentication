@@ -12,10 +12,14 @@ import {
 import {
   Bars2Icon,
 } from "@heroicons/react/24/outline";
- 
+import {useDispatch, useSelector} from 'react-redux'
+import { useNavigate } from 'react-router-dom';
+
 
 const NavbarUI = () => {
-
+  const {isAuthenticate ,user} = useSelector(state => state.user)
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
 
 
   const [isNavOpen, setIsNavOpen] = useState(false);
@@ -26,7 +30,7 @@ const NavbarUI = () => {
       "resize",
       () => window.innerWidth >= 960 && setIsNavOpen(false)
     );
-  }, []);
+  }, [isAuthenticate]);
 
   return (
     <>
@@ -42,7 +46,8 @@ const NavbarUI = () => {
         </Typography>
           </Link>
         <div className="absolute top-2/4 left-2/4 hidden -translate-x-2/4 -translate-y-2/4 lg:block">
-          <NavList />
+          
+          {isAuthenticate? (<></>):(<NavList/>)  }
         </div>
         <IconButton
           size="sm"
@@ -53,7 +58,11 @@ const NavbarUI = () => {
         >
           <Bars2Icon className="h-6 w-6" />
         </IconButton>
-        <ProfileMenu />
+        
+        {isAuthenticate && <ProfileMenu />}
+        
+
+
       </div>
       <Collapse  open={isNavOpen} className="overflow-scroll">
         <NavList />

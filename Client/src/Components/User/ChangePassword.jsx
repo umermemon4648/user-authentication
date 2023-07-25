@@ -11,6 +11,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux'
 import { changePassword } from '../../redux/actions/profileAction';
 import { Helmet } from 'react-helmet';
+import { getTheUserProfile } from '../../redux/actions/userAction';
 
 const ChangePassword = () => {
   const {p_message, p_error, isUpdated} = useSelector(state => state.profile)
@@ -35,6 +36,7 @@ const ChangePassword = () => {
       return toast.warn("Please Complete all fields")
     }
     dispatch(changePassword(o_password, n_password))
+    dispatch(getTheUserProfile())
   }
 
 

@@ -13,19 +13,15 @@ import {
 
   const navListItems = [
     {
-      label: "Account",
+      label: "SignUp",
       icon: UserCircleIcon,
-      url: '/',
+      url: '/auth/signup',
     },
-    {
-      label: "Blocks",
-      icon: CubeTransparentIcon,
-      url: '/',
-    },
+
     {
       label: "Login",
       icon: CodeBracketSquareIcon,
-      url: '/auth/signup',
+      url: '/auth/login',
     },
   ];
 

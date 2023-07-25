@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import {useDispatch} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 import {
     Typography,
     Button,
@@ -13,14 +13,15 @@ import {
     UserCircleIcon,
     ChevronDownIcon,
     Cog6ToothIcon,
-    InboxArrowDownIcon,
-    LifebuoyIcon,
     PowerIcon,
   } from "@heroicons/react/24/outline";
 import { logoutTheUser } from '../../redux/actions/userAction';
 import { useNavigate } from 'react-router-dom';
+import userImg from '../../images/user.png'
+
 
   const ProfileMenu = () => {
+    const {isAuthenticate ,user, loading} = useSelector(state => state.user)
     const navigate = useNavigate()
   const dispatch = useDispatch()
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -33,10 +34,6 @@ import { useNavigate } from 'react-router-dom';
       label: "My Profile",
       icon: UserCircleIcon,
       onClick: () => handleProfileClick(),
-    },
-    {
-      label: "Edit Profile",
-      icon: Cog6ToothIcon,
     },
     {
       label: "Sign Out",
@@ -57,12 +54,14 @@ import { useNavigate } from 'react-router-dom';
   }
 
   useEffect(() => {
-  }, [dispatch])
+  }, [dispatch, user])
   
   
 
   return (
     <>
+
+
     <Menu open={isMenuOpen} handler={setIsMenuOpen} placement="bottom-end">
       <MenuHandler>
         <Button
@@ -70,13 +69,20 @@ import { useNavigate } from 'react-router-dom';
           color="blue-gray"
           className="flex items-center gap-1 rounded-full py-0.5 pr-2 pl-0.5 lg:ml-auto"
         >
-          <Avatar
-            variant="circular"
-            size="sm"
-            alt="tania andrew"
-            className="border border-blue-500 p-0.5"
-            src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80"
-          />
+         
+
+  <Avatar
+  variant="circular"
+  size="sm"
+  alt="user.avatar.url"
+  className="border border-blue-500 p-0.5"
+  src={user.avatar.url}
+/>
+
+    
+
+
+
           <ChevronDownIcon
             strokeWidth={2.5}
             className={`h-3 w-3 transition-transform ${
@@ -118,7 +124,6 @@ import { useNavigate } from 'react-router-dom';
         })}
       </MenuList>
     </Menu>
-    
     </>
   )
 }

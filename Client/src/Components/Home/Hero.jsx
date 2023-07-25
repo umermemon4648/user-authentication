@@ -8,14 +8,14 @@ const Hero = () => {
 {/* <link href="https://fonts.googleapis.com/css?family=Mitr|Roboto+Slab|Source+Sans+Pro&display=swap" rel="stylesheet">
 <script src="https://premium-tailwindcomponents.netlify.app/assets/build/js/main.js?id=8c11b7cf78ebea1b5aed"></script> */}
 
-<div className="bg-indigo-900 relative overflow-hidden">
+<div className=" border-2  w-screen bg-indigo-900 relative overflow-hidden">
     <div className="inset-0 bg-black opacity-25 absolute"></div>
     <header className="absolute top-0 left-0 right-0 z-20">
       
     </header>
 
-    <div className="container mx-auto px-6 md:px-12 relative z-10 flex items-center py-24 xl:py-40">
-        <div className="lg:w-3/5 xl:w-2/5 flex flex-col items-start relative z-10">
+    <div className=" container mx-auto px-6 relative z-10 flex items-center">
+        <div className="w-1/2 flex flex-col items-start absolute z-10">
             <span className="font-mitr uppercase text-indigo-500">Lorem ipsum</span>
 
             <h1 className="font-roboto-slab text-4xl sm:text-6xl text-red-400 leading-tight mt-4">Let's go <br/> back to school</h1>
@@ -35,6 +35,9 @@ const Hero = () => {
    {/* img1 */}
 </div>
     
+    
+
+
     
     </>
   )

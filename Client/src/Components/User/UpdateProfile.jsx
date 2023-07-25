@@ -15,9 +15,11 @@ import { Link, useNavigate } from 'react-router-dom';
 import {toast } from 'react-toastify';
 import ToastAlert from '../../layout/ToastAlert';
 import { getTheUserProfile } from '../../redux/actions/userAction';
+import Loader from '../../layout/Loader';
+
 
 const UpdateProfile = ({handleOpen, open}) => {
-  const {p_message, p_error, isUpdated} = useSelector(state => state.profile)
+  const {isUpdated} = useSelector(state => state.profile)
   const {user, loading} = useSelector(state => state.user)
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -67,9 +69,10 @@ const UpdateProfile = ({handleOpen, open}) => {
     
 {/* update profile dialog box */}
 
-<ToastAlert/>
-{loading ? (<h1>Loading.....</h1>):(<>
+{loading ? (<Loader/>):(
+<>
 
+<ToastAlert/>
   <Dialog
         size="xs"
         open={open}
