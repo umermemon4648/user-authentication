@@ -9,11 +9,12 @@ const fileUpload = require('express-fileupload')
 const path = require('path');
 const dotenv = require('dotenv')
 dotenv.config()
-const BASE_URL = process.env.BASE_URL
 
 const app = express()
 dbConnection()
 
+const BASE_URL = process.env.BASE_URL
+// const port = 5000
 // cloudinary
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_NAME,
@@ -22,7 +23,7 @@ cloudinary.config({
 })
 
 
-app.use(cors({origin: "https://user-authentication-frontend-indol.vercel.app", credentials: true  }))
+app.use(cors({origin: "https://user-authentication-frontend-indol.vercel.app/", credentials: true  }))
 app.use(express.json())
 app.use(cookieParser())
 app.use(bodyParser.json())
@@ -56,6 +57,7 @@ app.get('/', (req, res) => {
 
 
 
-app.listen(BASE_URL, ()=>{
-    console.log(`Your app is running at http://localhost:${BASE_URL} 🚀`)
+app.listen(port, ()=>{
+    // console.log(`Your app is running at http://localhost:${port} 🚀`)
+    console.log(`Your app is running at ${BASE_URL} 🚀`)
 })

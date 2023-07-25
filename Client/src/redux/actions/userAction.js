@@ -60,7 +60,7 @@ export const loginUser = (email, password) => async(dispatch)=>{
 export const getTheUserProfile = () => async(dispatch)=>{
     try {
         dispatch({type: 'loadUserRequest'});
-        const { data } = await axios.get(`${API_BASE_URL}/me`,{withCredentials: true},)
+        const { data } = await axios.get(`${API_BASE_URL}/me`,{withCredentials: true})
 
 
         console.log("data = ",data);

@@ -7,8 +7,7 @@ const store = configureStore({
         user: userReducer,
         profile: profileReducer
     }
-})
-// export default the store 
+}) 
 export default store
 
 
